@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unspoken Hearts - Book Info</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ==== Your Theme CSS ==== */
+        :root {
+            --bg: #0b0c10;
+            --card: #12131a;
+            --muted: #9aa0aa;
+            --text: #eef1f7;
+            --brand: #7c4dff;
+            /* primary */
+            --brand-2: #00e1d6;
+            /* accent */
+            --ring: rgba(124, 77, 255, .45);
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(1200px 600px at 80% -10%, rgba(124, 77, 255, .15), transparent), radial-gradient(900px 500px at 10% 110%, rgba(0, 225, 214, .12), transparent), var(--bg);
+            color: var(--text);
+            font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--brand), #9d7bff);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(124, 77, 255, .35);
+            transition: .2s transform, .2s box-shadow
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(124, 77, 255, .45)
+        }
+
+        .btn.alt {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .14);
+            box-shadow: none
+        }
+
+        .btn img {
+            height: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 10px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: .4px
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: saturate(140%) blur(10px);
+            background: rgba(11, 12, 16, .55);
+            border-bottom: 1px solid rgba(255, 255, 255, .06)
+        }
+
+        header .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700
+        }
+
+        .logo-mark {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: conic-gradient(from 180deg, var(--brand), var(--brand-2));
+            box-shadow: 0 8px 24px rgba(124, 77, 255, .5)
+        }
+
+        nav a {
+            margin: 0 12px;
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500
+        }
+
+        nav a:hover {
+            color: var(--text)
+        }
+
+        .switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--muted)
+        }
+
+        .switch input {
+            display: none
+        }
+
+        .switch .knob {
+            width: 42px;
+            height: 24px;
+            background: #222534;
+            border-radius: 999px;
+            position: relative;
+            transition: .2s
+        }
+
+        .switch .knob::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 999px;
+            transition: .2s
+        }
+
+        .switch input:checked+.knob {
+            background: #e9eefc
+        }
+
+        .switch input:checked+.knob::after {
+            left: 21px;
+            background: #0b0c10
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .container {
+            padding: 0 24px 48px
+        }
+
+        .hero .container .main {
+            height: calc(100vh - 168px);
+            display: flex;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 56px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(36px, 6vw, 64px);
+            line-height: 1.05;
+            margin: 12px 0
+        }
+
+        .hero p {
+            max-width: 700px;
+            color: #cfd4dc;
+            font-size: clamp(16px, 2.2vw, 18px)
+        }
+
+        .hero .cta {
+            margin-top: 26px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .book-card {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 24px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .01));
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-top: 28px;
+            box-shadow: var(--shadow)
+        }
+
+        .cover {
+            width: 100%;
+            aspect-ratio: 2.1/3;
+            background: url('cover.jpg');
+            background-size: cover;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px 0px rgba(124, 77, 255, .25);
+        }
+
+        .cover::after {
+            content: " ";
+            white-space: pre;
+            position: absolute;
+            inset: 0;
+            padding: 18px;
+            font-family: "Playfair Display", serif;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 1.05;
+            color: #fff;
+            /* background: radial-gradient(500px 300px at 90% 10%, rgba(124, 77, 255, .25), transparent); */
+        }
+
+        .meta {
+            display: grid;
+            gap: 10px
+        }
+
+        .detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--muted)
+        }
+
+        /* Countdown */
+        #countdown {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(70px, 1fr));
+            gap: 10px;
+            margin-top: 18px;
+            max-width: 560px
+        }
+
+        .cd-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, .08);
+            padding: 16px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: var(--shadow)
+        }
+
+        .cd-num {
+            font-size: 28px;
+            font-weight: 700
+        }
+
+        .cd-label {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        /* Sections */
+        section {
+            padding: 56px 0
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow)
+        }
+
+        /* Program */
+        .program {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px
+        }
+
+        .slot {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            border-bottom: 1px dashed rgba(255, 255, 255, .08)
+        }
+
+        .slot:last-child {
+            border-bottom: none
+        }
+
+        .time {
+            width: 86px;
+            font-weight: 600;
+            color: #dbe0ea
+        }
+
+        .slot h4 {
+            margin: 0 0 6px
+        }
+
+        .slot p {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        /* Speakers */
+        .speakers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px
+        }
+
+        .person {
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .01))
+        }
+
+        .avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c4dff, #00e1d6);
+            display: grid;
+            place-items: center;
+            font-weight: 700
+        }
+
+        .person .role {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        /* Carousel */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .01));
+        }
+
+        .track {
+            display: flex;
+            transition: transform .4s ease-in-out
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 24px
+        }
+
+        .slide .quote {
+            font-size: 20px;
+            font-style: italic
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px
+        }
+
+        .ctrl {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 10px;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        /* RSVP */
+        form {
+            display: grid;
+            gap: 12px
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            background: #0f1118;
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 12px;
+            padding: 12px;
+            outline: none
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--ring);
+            box-shadow: 0 0 0 3px var(--ring)
+        }
+
+        .two {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: 1fr 1fr
+        }
+
+        .notice {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        /* Footer */
+        footer {
+            padding: 36px 0;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            color: var(--muted)
+        }
+
+        .share {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        /* Utilities */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 28px
+        }
+
+        .hidden {
+            display: none
+        }
+
+        .center {
+            text-align: center
+        }
+
+        /* Responsive */
+        @media (max-width: 820px) {
+            nav {
+                display: none
+            }
+
+
+
+            .two {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media (max-width: 425px) {
+            nav {
+                display: none
+            }
+
+            .book-card {
+                grid-template-columns: 1fr
+            }
+
+            .two {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="wrap">
+            <div class="logo">
+                <div class="logo-mark"></div>
+                Unspoken Hearts
+            </div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#author">Author</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#buy">Buy</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="main">
+                <span class="tag">Romance • Drama • Poetry</span>
+                <h1>Crush, longing, and the words left unsaid.</h1>
+                <p>"Unspoken Hearts" takes you on a journey through emotions that even words cannot capture. A heartfelt
+                    narrative blending romance, poetry, and reality.</p>
+                <div class="cta">
+                    <a href="#buy" class="btn">Buy Now</a>
+                    <a href="#about" class="btn alt">Read More</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="cover"></div>
+                <div class="meta">
+                    <div class="detail">📅 Release Date: Aug 20, 2025</div>
+                    <div class="detail">📖 Pages: 180</div>
+                    <div class="detail">📚 Genre: Romance, Fiction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT BOOK -->
+    <section id="about" class="container">
+        <div class="section-title">
+            <h2>About the Book</h2>
+        </div>
+        <div class="card" style="padding: 24px;">
+            <h1 id="bk-title">Not a Love Story but A Crush Story</h1>
+            <p class="lead">A smile changed everything.</p>
+
+            <p>
+                An introverted boy. A girl who felt like a movie scene. And a gang of friends chanting,
+                <span class="em">“Bhai, bol de!”</span> every day.
+            </p>
+
+            <p>
+                From harmless lies to “by-mistake” meetings, this isn’t a love story, it’s a
+                <span class="em">Bollywood-style crush story</span> told in the language of friends,
+                feelings, and late-night overthinking.
+            </p>
+
+            <p class="tagline">
+                If you’ve ever loved someone without saying a word… this might just be <strong>your</strong> story.
+            </p>
+        </div>
+    </section>
+
+    <!-- AUTHOR -->
+    <section id="author" class="container">
+        <div class="section-title">
+            <h2>About the Author</h2>
+        </div>
+        <div class="speakers">
+            <div class="person">
+                <div class="avatar">HB</div>
+                <h3>Harsh Baheti</h3>
+                <div class="role">Author & Storyteller</div>
+                <p>Harsh Baheti isn’t your typical bestselling author (yet!), he’s just a guy who once fell in love,
+                    never said it out loud, and accidentally turned all that silence into a book.
+                </p>
+                <p> A computer engineer by degree and storyteller by heart, Harsh stitches together real emotions and
+                    filmy daydreams, serving them with a side of nostalgia, chai, and the delightful chaos of
+                    friendships.
+                </p>
+                <p>
+                    His stories live in the sweet spot between two languages, where English feels too polished, Hindi
+                    feels too intense, and Hinglish feels like home. It’s the language of inside jokes, late-night
+                    confessions, and the kind of memories that still play like old songs.
+                </p>
+                <p>
+                    When he’s not writing, you might find him rewatching a romantic anime, overthinking a simple “seen”
+                    on WhatsApp, coding some random application at 2 AM, strumming his guitar in search of the right
+                    tune, or exploring new places just to collect stories. And somewhere in between, he’s still quietly
+                    wondering, “kya usne meri kahani kabhi padhi hogi?”</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="container">
+        <div class="section-title">
+            <h2>What Readers Say</h2>
+        </div>
+        <div class="carousel">
+            <div class="track">
+                <div class="slide">
+                    <p class="quote">"Puri book ekdum classic case hai ‘mere dost ka one-sided pyaar’.
+                        Aisa laga writer mere saamne baitha hai, Maggie kha raha hai, aur apni crush ka pura history
+                        bata raha hai… dates ke saath!
+                        Randi rona level: Guinness World Record material. 😂"</p>
+                    <p>- Dost Ki Dukh Bhari Kahani Listener</p>
+                </div>
+
+                <div class="slide">
+                    <p class="quote">"Padhte-padhte laga main apne hi dost ka WhatsApp chat padh rahi hoon.
+                        Thoda pyaar, thoda heartbreak, aur beech-beech mein mast self-pity ka tadka.
+                        End mein toh mann kiya writer ko ek chai pilau aur bolu ‘bhai,bol de abhi toh..!’"</p>
+                    <p>- Friendzone Expert</p>
+                </div>
+
+
+
+                <div class="slide">
+                    <p class="quote">"Story ka plot simple hai, ladka ek ladki ko pasand karta hai, ladki ko pata bhi
+                        nahi,
+                        aur ladka iske baare mein ek encyclopedia likh deta hai. 📚
+                        Bhai ne dil hi nahi, Google Docs bhar diya!"</p>
+                    <p>- Sarcastic Reader</p>
+                </div>
+
+                <div class="slide">
+                    <p class="quote">"Randi rona + thoda comedy + dosti ke free insults = yeh book.
+                        Pura feel aaya jaise dost apni crush ka update dene ke liye raat ke 1 baje call kare,
+                        aur tu bas ‘haan, haan, sun raha hoon’ bolke background mein PUBG khelega."</p>
+                    <p>- Late Night Call Survivor</p>
+                </div>
+
+            </div>
+            <div class="controls">
+                <button class="ctrl" id="prev">
+                    &lt; </button>
+                <button class="ctrl" id="next">&gt;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUY -->
+    <section id="buy" class="container">
+        <div class="section-title">
+            <h2>Buy the Book</h2>
+        </div>
+        <div class="card" style="padding: 24px;">
+            <p>Available in Paperback.</p>
+            <a href="https://store.pothi.com/book/harsh-baheti-unspoken-hearts/" class="btn">Buy on Pothi <img
+                    src="pothi.jpg"></a>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="container">
+        <div class="section-title">
+            <h2>📢 Got gossip, feedback, or just wanna say hi? Drop it here! 😜</h2>
+        </div>
+        <form id="contactForm" class="card" style="padding: 24px;">
+            <div class="two">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+            </div>
+            <textarea id="message" placeholder="Message" rows="4" required></textarea>
+            <button type="submit" class="btn">Send</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="container center">
+        <p>© 2025 Harsh Baheti | Unspoken Hearts</p>
+    </footer>
+
+    <script>
+        // Carousel Logic
+        const track = document.querySelector('.track');
+        const slides = Array.from(track.children);
+        let currentIndex = 0;
+        let autoScrollInterval;
+        let autoScrollStopped = false; // Flag to stop permanently
+
+        // Smooth transition via CSS
+        track.style.transition = "transform 0.6s ease-in-out";
+
+        // Function to move to next slide
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Auto scroll every 3 seconds
+        function startAutoScroll() {
+            if (!autoScrollStopped) {
+                autoScrollInterval = setInterval(nextSlide, 5000);
+            }
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+
+        // Next button
+        document.getElementById('next').addEventListener('click', () => {
+            stopAutoScroll();
+            autoScrollStopped = true; // Stop forever
+            nextSlide();
+        });
+
+        // Prev button
+        document.getElementById('prev').addEventListener('click', () => {
+            stopAutoScroll();
+            autoScrollStopped = true; // Stop forever
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+
+        // Start auto scroll initially
+        startAutoScroll();
+
+        // Pause on hover (only if not stopped permanently)
+        track.addEventListener('mouseenter', () => {
+            if (!autoScrollStopped) stopAutoScroll();
+        });
+        track.addEventListener('mouseleave', () => {
+            if (!autoScrollStopped) startAutoScroll();
+        });
+
+
+        // From Submission
+
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
+            e.preventDefault(); // stop form from reloading page
+
+            const formData = {
+                name: document.getElementById("name").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                message: document.getElementById("message").value.trim()
+            };
+
+            try {
+                const res = await fetch("https://feedback-backend-3k8g.onrender.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await res.json();
+
+                if (res.ok) {
+                    alert("✅ Message sent successfully!");
+                    e.target.reset();
+                } else {
+                    alert("❌ Error: " + (result.error || "Something went wrong."));
+                }
+            } catch (err) {
+                alert("⚠ Unable to send message. Please try again later.");
+                console.error(err);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
